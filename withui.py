@@ -18,38 +18,38 @@ def get_selected_row(event):
 def view_command():
   
     lb1.delete(0,END)  
-    for row in backend.view():
+    for row in db.view():
         lb1.insert(END,row)
 
 def search_command():
     
     lb1.delete(0,END)
-    for row in backend.search(name.get(),gender.get(),year_level.get(),course_code.get()):
+    for row in db.search(name.get(),gender.get(),year_level.get(),course_code.get()):
         lb1.insert(END,row)
     clear_entries()
 
 def add_command():
     
-    backend.insert(name.get(),gender.get(),year_level.get(),course_code.get())
+    db.insert(name.get(),gender.get(),year_level.get(),course_code.get())
     clear_entries()
     view_command()
 
 def update_command():
 
-    backend.update(selected_tuple[0],name.get(),gender.get(),year_level.get(),course_code.get())
+    db.update(selected_tuple[0],name.get(),gender.get(),year_level.get(),course_code.get())
     clear_entries()
     view_command()
     
 def delete_command():
     index = lb1.curselection()[0]
     selected_tuple = lb1.get(index)
-    backend.delete(selected_tuple[0])
+    db.delete(selected_tuple[0])
     clear_entries()
     view_command()
 
 def delete_data_command():
 
-    backend.delete_data()
+    db.delete_data()
     view_command()
 
 def clear_entries():
